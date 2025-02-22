@@ -28,4 +28,3 @@ const NoChatSelected = () => {
 
 export default NoChatSelected;
 
-{/* <MessageSquareOff /> */}
