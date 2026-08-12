@@ -1,3 +1,6 @@
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,7 +10,7 @@ import express from 'express';
 
 import path from "path";
 
-import {connectDB} from "./lib/db.js"
+import { connectDB } from "./lib/db.js"
 
 import authRoutes from "./routes/auth.route.js"
 import messageRoutes from './routes/message.route.js';
@@ -34,7 +37,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 
 
-if(process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
     app.get("*", (req, res) => {
@@ -42,7 +45,7 @@ if(process.env.NODE_ENV === "production"){
     })
 }
 
-server.listen(PORT, () =>{
+server.listen(PORT, () => {
     console.log('Server is running on port:' + PORT);
     connectDB();
 });
